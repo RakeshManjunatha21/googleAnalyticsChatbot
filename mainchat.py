@@ -30,7 +30,7 @@ def gemini_response(prompt: str) -> str:
 def load_all_sheets(path: str) -> dict:
     return pd.read_excel(path, sheet_name=None)
 
-data = load_all_sheets("GA4 Data\GA4_Full_Report_Apr2023_Mar2024_V4.xlsx")
+data = load_all_sheets("GA4_Full_Report_Apr2023_Mar2024_V4.xlsx")
 
 # ── PREPARE SCHEMA + DATA JSON ─────────────────────────────────────────────────
 # 1) Build simple sheet→columns summary
