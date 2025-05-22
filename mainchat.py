@@ -30,7 +30,7 @@ def gemini_response(prompt: str) -> str:
 def load_all_sheets(path: str) -> dict:
     return pd.read_excel(path, sheet_name=None)
 
-data = load_all_sheets("GA4_Full_Report_Apr2023_Mar2024_V4.xlsx")
+data = load_all_sheets("GA4 Data\GA4_Full_Report_Apr2023_Mar2024_V4.xlsx")
 
 # ── PREPARE SCHEMA + DATA JSON ─────────────────────────────────────────────────
 # 1) Build simple sheet→columns summary
@@ -49,7 +49,44 @@ data_json = json.dumps(
 
 # ── STREAMLIT CHAT UI ─────────────────────────────────────────────────────────
 # st.set_page_config(page_title="GA4 Full-Data Chat", layout="wide")
-st.title("💬 Google Analytics Chat Assistant")
+import streamlit as st
+from streamlit.components.v1 import html
+
+# Set page config
+
+# Custom CSS for better UI
+st.markdown("""
+    <style>
+        .main {
+            background-color: #f8f9fa;
+        }
+        .title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #0f4c81;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 2rem;
+        }
+        .stButton>button {
+            border-radius: 10px;
+            background-color: #0f4c81;
+            color: white;
+            font-weight: bold;
+        }
+        .stTextInput>div>div>input {
+            border-radius: 10px;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Title and subtitle
+st.markdown('<div class="title">💬 Google Analytics Chat Assistant</div>', unsafe_allow_html=True)
+# st.markdown('<div class="subtitle">Ask questions, get insights. Powered by Gemini AI & Google Analytics 4</div>', unsafe_allow_html=True)
+
 
 if "history" not in st.session_state:
     st.session_state.history = []
@@ -60,9 +97,10 @@ for idx, (role, txt) in enumerate(st.session_state.history):
 
 # get user input
 query = st.chat_input("Ask any question about your Google Analytics…", key="input_1")
-json_file_path = "combined_data_mod_v2.json"
-with open(json_file_path, "r", encoding="utf-8") as f:
-    data_loaded_adward = json.load(f)
+txt_file_path = "prompt.txt"
+with open(txt_file_path, "r", encoding="utf-8") as file:
+    data_text = file.read()
+
 
 
 if query:
@@ -72,44 +110,75 @@ if query:
 
     # build the full prompt
     prompt = f"""
+    You are an expert performance marketing analyst. Your role is to deliver precise, insight-driven answers to user questions using only the data provided. Your responses must reflect the depth, clarity, and strategic focus expected from a senior growth consultant or marketing strategist, with the goal of driving measurable business impact.
 
-    Your role is to deliver precise, actionable, and insight-rich answers to the user's questions, using only the data provided.
-    Approach each response like a seasoned growth consultant or performance marketer—capable of transforming data into strategic decisions, optimization opportunities, and business growth levers.
+    Response Rules and Expectations:
 
-    🧠 Response Guidelines:
-    Always root your analysis in the provided data, but do not expose or mention sheet names, column headers, or JSON keys.
+    Only use the provided data.
+    Avoid assumptions or generic advice. Every insight must be grounded in specific, interpretable patterns or metrics observed in the data.
 
-    Prioritize business outcomes, not raw metrics. Avoid technical or structural explanations.
+    Engagement Rate Calculation (when relevant):
+    If the question involves performance evaluation (e.g., landing pages or user engagement), calculate and report:
 
-    Your tone should be confident, executive-facing, and conversational, as if presenting to a CMO, marketing lead, or strategy team.
+    Engagement Rate = (Engaged Sessions / Total Sessions) × 100
+    URL Handling:
+    If full links (URLs) are available in the data and relevant to the question:
 
-    📌 Your response must always include:
-    Data-driven insights in a clear tabular format – Compare key metrics, highlight patterns, and summarize findings visually when appropriate.
+    Always include the full URL in the output.
 
-    Practical recommendations – Identify:
+    You may use a short name for readability, but ensure the actual link is visible or hyperlinked appropriately.
 
-    What worked well (strengths to double down on),
+    No reference to data structures.
+    Do not mention terms like "columns", "rows", "JSON", "table", or "spreadsheet".
 
-    What didn’t (underperforming areas to rework), and
+    Executive-facing tone and delivery:
+    Write confidently and clearly, as if presenting to a CMO, senior marketing lead, or strategy team. Avoid technical explanations or raw data summaries without insight.
 
-    What needs improvement (clear optimization paths).
+    Your response must include:
 
-    Strategic takeaways – Every insight should lead to a business-relevant recommendation. Think: cost efficiency, ROI impact, channel effectiveness, funnel improvements, etc.
+    Insight Summary:
+    Present core findings using tables and bullet points for clarity. Highlight:
 
-    Use specific data points and relative comparisons to justify conclusions (e.g., uplift %, cost changes, engagement delta) without referencing source structures.
+    Key metric comparisons
 
-    ❌ Avoid:
-    Generic commentary or restating metrics without interpretation.
+    Notable changes, trends, and patterns
 
-    Mentioning “the dataset,” “the spreadsheet,” “the table,” or any structural elements
+    Data shifts that impact performance
 
-    ---
+    Performance Analysis:
+    Identify and explain:
 
-    **User Question:**  
+    What worked well (top-performing elements or strategies)
+
+    What underperformed (inefficient or low-impact areas)
+
+    What requires improvement (areas with optimization potential)
+
+    Strategic Recommendations:
+    Translate data insights into actionable recommendations. Focus on:
+
+    ROI improvements
+
+    Cost efficiency
+
+    Funnel or conversion optimization
+
+    Channel or content effectiveness
+
+    Avoid:
+
+    Generic or repetitive advice
+
+    Metrics without interpretation
+
+    Mentioning anything about the structure of the data (e.g., headers, keys, datasets)
+
+    User Question:
     {query}
 
-    **Data to use (Google Ads - JSON):**  
-    {data_loaded_adward}
+    Data to use (Google Ads - JSON):
+    {data_text}
+
     """
 
 
