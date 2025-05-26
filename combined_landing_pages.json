@@ -1,0 +1,509 @@
+{
+  "landingPages": [
+    {
+      "landingPage": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term={keyword}",
+      "adGroup": "Insurance Home page (Exact Match)",
+      "campaign": "Search Ad - May 2025",
+      "expandedURLs": [
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20technology%20solutions&gad_source=5&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "[insurance technology solutions]",
+              "matchType": "Exact match",
+              "clicks": 1,
+              "impressions": 1,
+              "CTR": "100.00%",
+              "avgCPC": 2.26,
+              "cost": 2.26,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=digital%20insurance%20software&gad_source=5&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "[digital insurance software]",
+              "matchType": "Exact match",
+              "clicks": 1,
+              "impressions": 4,
+              "CTR": "25.00%",
+              "avgCPC": 0.21,
+              "cost": 0.21,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20consulting&gad_campaignid=22551317951&wbraid=Cj8KCQjwiqbBBhDuARIuADHii4o_QHaCxzxl6laY4Bv5n58hmCXpyw4jdC21gYGn79_0mwtAXkZL0wHD6BoCUh8",
+          "keywords": [
+            {
+              "keyword": "[insurance consulting]",
+              "matchType": "Exact match",
+              "clicks": 1,
+              "impressions": 10,
+              "CTR": "10.00%",
+              "avgCPC": 0.5,
+              "cost": 0.5,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20technology%20software&gad_source=5&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "[insurance technology software]",
+              "matchType": "Exact match",
+              "clicks": 10,
+              "impressions": 58,
+              "CTR": "17.24%",
+              "avgCPC": 0.34,
+              "cost": 3.37,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20it%20services&gad_source=5&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "[insurance it services]",
+              "matchType": "Exact match",
+              "clicks": 4,
+              "impressions": 7,
+              "CTR": "57.14%",
+              "avgCPC": 0.43,
+              "cost": 1.7,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20technology%20services&gad_source=5&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "[insurance technology services]",
+              "matchType": "Exact match",
+              "clicks": 59,
+              "impressions": 445,
+              "CTR": "13.26%",
+              "avgCPC": 0.33,
+              "cost": 19.71,
+              "conversions": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "landingPage": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term={keyword}",
+      "adGroup": "Insurance Home page (Phrase Match)",
+      "campaign": "Search Ad - May 2025",
+      "expandedURLs": [
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20technology%20solutions&gad_campaignid=22551317951&wbraid=Cj4KCAjw87XBBhBVEi4AZPFjftFzWR_109bdRNSjZOg3QhAfDSChWiBFQCYYAn8EN9xtQEHyDIoQoUjYGgKUiA",
+          "keywords": [
+            {
+              "keyword": "insurance technology solutions",
+              "matchType": "Phrase match",
+              "clicks": 50,
+              "impressions": 384,
+              "CTR": "13.02%",
+              "avgCPC": 0.37,
+              "cost": 18.7,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20technology%20software&gad_campaignid=22551317951&wbraid=Cj4KCAjwlrvBBhAlEi4A6MaJIIbcankXttNadB8ZavkSbmDybO-8FayeVXGRgCqg4sFiy5MPXRjIYUkXGgJNBA",
+          "keywords": [
+            {
+              "keyword": "insurance technology software",
+              "matchType": "Phrase match",
+              "clicks": 25,
+              "impressions": 252,
+              "CTR": "9.92%",
+              "avgCPC": 0.46,
+              "cost": 11.44,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=digital%20insurance%20software&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "digital insurance software",
+              "matchType": "Phrase match",
+              "clicks": 99,
+              "impressions": 741,
+              "CTR": "13.36%",
+              "avgCPC": 0.25,
+              "cost": 24.74,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20it%20solutions&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "insurance it solutions",
+              "matchType": "Phrase match",
+              "clicks": 6,
+              "impressions": 85,
+              "CTR": "7.06%",
+              "avgCPC": 0.26,
+              "cost": 1.55,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20technology%20consulting&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "insurance technology consulting",
+              "matchType": "Phrase match",
+              "clicks": 3,
+              "impressions": 54,
+              "CTR": "5.56%",
+              "avgCPC": 0.39,
+              "cost": 1.17,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20technology%20services&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "insurance technology services",
+              "matchType": "Phrase match",
+              "clicks": 1,
+              "impressions": 43,
+              "CTR": "2.33%",
+              "avgCPC": 0.1,
+              "cost": 0.1,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20it%20services&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "insurance it services",
+              "matchType": "Phrase match",
+              "clicks": 0,
+              "impressions": 9,
+              "CTR": "0.00%",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=it%20solutions%20for%20insurance&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "it solutions for insurance",
+              "matchType": "Phrase match",
+              "clicks": 0,
+              "impressions": 0,
+              "CTR": "--",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20consulting&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "insurance consulting",
+              "matchType": "Phrase match",
+              "clicks": 18,
+              "impressions": 84,
+              "CTR": "21.43%",
+              "avgCPC": 1.15,
+              "cost": 20.76,
+              "conversions": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "landingPage": "https://www.aspiresys.com/insurance-intelligent-automation-solutions/claims-automation/?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term={keyword}",
+      "adGroup": "Claims Automation (Exact Match)",
+      "campaign": "Search Ad - May 2025",
+      "expandedURLs": [
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance-intelligent-automation-solutions/claims-automation/?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=automated%20claims%20processing&gad_source=1&gad_campaignid=22551317951&gbraid=0AAAAAokxRjKLzW2Xlzipv4ndDsBU-oYRw",
+          "keywords": [
+            {
+              "keyword": "automated claims processing",
+              "matchType": "Exact match",
+              "clicks": 5,
+              "impressions": 35,
+              "CTR": "14.29%",
+              "avgCPC": 0.15,
+              "cost": 0.74,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance-intelligent-automation-solutions/claims-automation/?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=claims%20automation&gad_source=5&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "claims automation insurance",
+              "matchType": "Exact match",
+              "clicks": 0,
+              "impressions": 0,
+              "CTR": "--",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance-intelligent-automation-solutions/claims-automation/?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=automated%20claims%20processing&gad_source=5&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "automated claims processing",
+              "matchType": "Exact match",
+              "clicks": 3,
+              "impressions": 33,
+              "CTR": "9.09%",
+              "avgCPC": 0.14,
+              "cost": 0.42,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance-intelligent-automation-solutions/claims-automation/?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=claims%20processing%20automation&gad_source=5&gad_campaignid=22551317951",
+          "keywords": [
+            {
+              "keyword": "claims processing automation",
+              "matchType": "Exact match",
+              "clicks": 0,
+              "impressions": 2,
+              "CTR": "0.00%",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": null,
+          "keywords": [
+            {
+              "keyword": "automated insurance claims",
+              "matchType": "Exact match",
+              "clicks": 0,
+              "impressions": 0,
+              "CTR": "--",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "insurance claims automation",
+              "matchType": "Exact match",
+              "clicks": 0,
+              "impressions": 0,
+              "CTR": "--",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "landingPage": "https://www.aspiresys.com/insurance-intelligent-automation-solutions/claims-automation/",
+        "adGroup": "Claims Automation (Phrase Match)",
+        "campaign": "Search Ad - May 2025",
+      "expandedURLs": [
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance-intelligent-automation-solutions/claims-automation/?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=insurance%20claims%20automation",
+          "keywords": [
+            {
+              "keyword": "insurance claims automation",
+              "matchType": "Phrase match",
+              "clicks": 5,
+              "impressions": 100,
+              "CTR": "5.00%",
+              "avgCPC": 0.25,
+              "cost": 1.25,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance-intelligent-automation-solutions/claims-automation/?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=automated%20claims%20processing",
+          "keywords": [
+            {
+              "keyword": "automated claims processing",
+              "matchType": "Phrase match",
+              "clicks": 63,
+              "impressions": 547,
+              "CTR": "11.52%",
+              "avgCPC": 0.28,
+              "cost": 17.76,
+              "conversions": 1
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance-intelligent-automation-solutions/claims-automation/?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=automated%20insurance%20claims",
+          "keywords": [
+            {
+              "keyword": "automated insurance claims",
+              "matchType": "Phrase match",
+              "clicks": 0,
+              "impressions": 0,
+              "CTR": "0.00%",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance-intelligent-automation-solutions/claims-automation/?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=claims%20processing%20automation",
+          "keywords": [
+            {
+              "keyword": "claims processing automation",
+              "matchType": "Phrase match",
+              "clicks": 6,
+              "impressions": 85,
+              "CTR": "7.06%",
+              "avgCPC": 0.57,
+              "cost": 3.40,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance-intelligent-automation-solutions/claims-automation/?utm_source=Goolge&utm_medium=Search+Ad&utm_campaign=Search+Ad+-+May+2025&utm_term=claims%20automation%20insurance",
+          "keywords": [
+            {
+              "keyword": "claims automation insurance",
+              "matchType": "Phrase match",
+              "clicks": 0,
+              "impressions": 26,
+              "CTR": "0.00%",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "landingPage": "https://www.aspiresys.com/insurance/data-analytics-ai-framework",
+        "adGroup": "Data Analytics and AI",
+        "campaign": "Search Ad - May 2025",
+      "expandedURLs": [
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance/data-analytics-ai-framework?...=insurance%20data%20analytics",
+          "keywords": [
+            {
+              "keyword": "[Insurance data analytics]",
+              "matchType": "Exact match",
+              "clicks": 1,
+              "impressions": 4,
+              "CTR": "25.00%",
+              "avgCPC": 4.92,
+              "cost": 4.92,
+              "conversions": 0
+            },
+            {
+              "keyword": "[AI and analytics solution for insurance]",
+              "matchType": "Exact match",
+              "clicks": 0,
+              "impressions": 0,
+              "CTR": "0.00%",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance/data-analytics-ai-framework?...=insurance%20data%20management",
+          "keywords": [
+            {
+              "keyword": "[Insurance data management]",
+              "matchType": "Exact match",
+              "clicks": 0,
+              "impressions": 1,
+              "CTR": "0.00%",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance/data-analytics-ai-framework?...=analytics%20in%20insurance%20industry",
+          "keywords": [
+            {
+              "keyword": "[Analytics in insurance industry]",
+              "matchType": "Exact match",
+              "clicks": 0,
+              "impressions": 3,
+              "CTR": "0.00%",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance/data-analytics-ai-framework?...=predictive%20analytics%20in%20insurance",
+          "keywords": [
+            {
+              "keyword": "[Predictive analytics in insurance]",
+              "matchType": "Exact match",
+              "clicks": 2,
+              "impressions": 4,
+              "CTR": "50.00%",
+              "avgCPC": 0.31,
+              "cost": 0.62,
+              "conversions": 0
+            }
+          ]
+        },
+        {
+          "expandedURL": "https://www.aspiresys.com/insurance/data-analytics-ai-framework?...=insurance%20analytics%20and%20ai",
+          "keywords": [
+            {
+              "keyword": "[Insurance analytics and ai]",
+              "matchType": "Exact match",
+              "clicks": 0,
+              "impressions": 1,
+              "CTR": "0.00%",
+              "avgCPC": 0,
+              "cost": 0,
+              "conversions": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

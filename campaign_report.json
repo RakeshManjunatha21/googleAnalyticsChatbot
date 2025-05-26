@@ -1,0 +1,123 @@
+{
+  "report_period": {
+    "start_date": "2024-05-01",
+    "end_date": "2025-05-23"
+  },
+  "currency": "USD",
+  "campaign_summary": {
+    "total_impressions": 12559,
+    "total_interactions": 1935,
+    "interaction_rate": "15.41%",
+    "avg_cost": 2.11,
+    "total_cost": 4086.71
+  },
+  "campaigns": [
+    {
+      "name": "Search Ad - May 2025",
+      "status": "Enabled",
+      "budget": 50,
+      "budget_type": "Daily",
+      "campaign_type": "Search",
+      "impressions": 2985,
+      "interactions": 360,
+      "interaction_rate": "12.06%",
+      "avg_cost": 0.37,
+      "cost": 134.9,
+      "ad_groups": [
+        {
+          "name": "Data Analytics and AI",
+          "status": "Enabled",
+          "conversions": 0,
+          "cost_per_conversion": 0,
+          "clicks": 3,
+          "impressions": 13,
+          "ctr": "23.08%",
+          "avg_cpc": 1.85,
+          "cost": 5.54
+        },
+        {
+          "name": "Insurance Home page (Phrase Match)",
+          "status": "Enabled",
+          "conversions": 0,
+          "cost_per_conversion": 0,
+          "clicks": 202,
+          "impressions": 1652,
+          "ctr": "12.23%",
+          "avg_cpc": 0.39,
+          "cost": 78.46
+        },
+        {
+          "name": "Insurance Home page (Exact Match)",
+          "status": "Enabled",
+          "conversions": 1,
+          "cost_per_conversion": 27.75,
+          "clicks": 76,
+          "impressions": 525,
+          "ctr": "14.48%",
+          "avg_cpc": 0.37,
+          "cost": 27.75
+        },
+        {
+          "name": "Claims Automation (Phrase Match)",
+          "status": "Enabled",
+          "conversions": 1,
+          "cost_per_conversion": 22.41,
+          "clicks": 74,
+          "impressions": 758,
+          "ctr": "9.76%",
+          "avg_cpc": 0.3,
+          "cost": 22.41
+        },
+        {
+          "name": "Claims Automation (Exact Match)",
+          "status": "Enabled",
+          "conversions": 0,
+          "cost_per_conversion": 0,
+          "clicks": 5,
+          "impressions": 37,
+          "ctr": "13.51%",
+          "avg_cpc": 0.15,
+          "cost": 0.74
+        }
+      ]
+    }
+  ],
+  "paused_campaigns": [
+    "Insurance search ad 1",
+    "Guidewire_Implementation_Software_APR_2022 EU",
+    "Insurance Search ad - EU (August 2024)",
+    "Insurance Search ad - US (August 2024)",
+    "Website traffic-Insurance-Oct",
+    "Insurance - Web Traffic",
+    "Insurance Performance - Case study-Assure",
+    "Guidewire_Implementation_APR_2022_US",
+    "Insurance - Web Traffic #2",
+    "(EU) Guidewire Demo - Nordics",
+    "Guidewire_Implementation_Software_APR_2022_US",
+    "Search-Insurance - nov - new",
+    "Guidewire_Implementation_APR_2022_EU"
+  ],
+  "channel_summary": {
+    "Search": {
+      "impressions": 12559,
+      "interactions": 1935,
+      "interaction_rate": "15.41%",
+      "avg_cost": 2.11,
+      "cost": 4086.71
+    },
+    "Display": {
+      "impressions": 0,
+      "interactions": 0,
+      "interaction_rate": "--",
+      "avg_cost": 0,
+      "cost": 0
+    },
+    "Performance Max": {
+      "impressions": 0,
+      "interactions": 0,
+      "interaction_rate": "--",
+      "avg_cost": 0,
+      "cost": 0
+    }
+  }
+}
