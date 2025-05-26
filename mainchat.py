@@ -36,29 +36,25 @@ landing_data = load_json("combined_landing_pages.json")
 # ─────────────────────────────────────────────────────
 
 
-# st.markdown("""
-#     <style>
-#         .main {
-#             background-color: #f4f6f9;
-#             font-family: 'Segoe UI', sans-serif;
-#         }
-#         .title {
-#             font-size: 2.5rem;
-#             font-weight: bold;
-#             color: #0b3c5d;
-#             margin-top: 10px;
-#             margin-bottom: 0.2rem;
-#         }
-#         .subtitle {
-#             font-size: 1.1rem;
-#             color: #6c757d;
-#             margin-bottom: 2rem;
-#         }
-#         .stChatMessage {
-#             padding: 0.5rem;
-#         }
-#     </style>
-# """, unsafe_allow_html=True)
+st.markdown("""
+    <style>
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0b3c5d;
+            margin-top: 10px;
+            margin-bottom: 0.2rem;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 2rem;
+        }
+        .stChatMessage {
+            padding: 0.5rem;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 st.markdown('<div class="title">💼 ADs Intelligence Assistant</div>', unsafe_allow_html=True)
 # st.markdown('<div class="subtitle">Campaign-related questions.</div>', unsafe_allow_html=True)
