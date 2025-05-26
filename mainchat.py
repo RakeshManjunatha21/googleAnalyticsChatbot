@@ -1,190 +1,151 @@
-# app.py
-import os
-import json
 import streamlit as st
-import pandas as pd
-# from dotenv import load_dotenv
 import google.generativeai as genai
-from streamlit_chat import message
-
-# ── LOAD SECRETS ───────────────────────────────────────────────────────────────
-# load_dotenv()
+import json
+import os
+st.set_page_config(page_title="💼 Campaign Intelligence Assistant", layout="wide")
+# ─────────────────────────────────────────────────────
+# CONFIGURE GEMINI
+# ─────────────────────────────────────────────────────
 GEMINI_API_KEY = "AIzaSyBIBr01u6_BNVfYk989DXkv3FKQA928Kq8"
 genai.configure(api_key=GEMINI_API_KEY)
 
-# ── GEMINI CALL WRAPPER ─────────────────────────────────────────────────────────
 def gemini_response(prompt: str) -> str:
     model = genai.GenerativeModel(
-        "gemini-1.5-flash",
+        "gemini-2.0-flash",
         generation_config=genai.types.GenerationConfig(temperature=0.2)
     )
     resp = model.generate_content(prompt)
-    # pick first candidate
     return (
         resp.candidates[0].content.parts[0].text
         if hasattr(resp, "candidates") else resp.text
     )
 
-# ── LOAD GA4 EXCEL (all sheets) ────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────
+# LOAD JSON DATA
+# ─────────────────────────────────────────────────────
 @st.cache_data
-def load_all_sheets(path: str) -> dict:
-    return pd.read_excel(path, sheet_name=None)
+def load_json(file_path):
+    with open(file_path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-data = load_all_sheets("GA4_Full_Report_Apr2023_Mar2024_V4.xlsx")
+campaign_data = load_json("campaign_report.json")
+landing_data = load_json("combined_landing_pages.json")
 
-# ── PREPARE SCHEMA + DATA JSON ─────────────────────────────────────────────────
-# 1) Build simple sheet→columns summary
-schema_info = []
-for sheet, df in data.items():
-    cols = df.columns.tolist()
-    schema_info.append(f"• {sheet}: columns = {cols}")
-schema_text = "\n".join(schema_info)
+# ─────────────────────────────────────────────────────
+# PAGE DESIGN
+# ─────────────────────────────────────────────────────
 
-# 2) Convert entire dataset to JSON
-#    (this can be large—ensure your deployment can handle it)
-data_json = json.dumps(
-    {sheet: df.to_dict(orient="records") for sheet, df in data.items()},
-    indent=None
-)
 
-# ── STREAMLIT CHAT UI ─────────────────────────────────────────────────────────
-# st.set_page_config(page_title="GA4 Full-Data Chat", layout="wide")
-import streamlit as st
-from streamlit.components.v1 import html
-
-# Set page config
-
-# Custom CSS for better UI
 st.markdown("""
     <style>
         .main {
-            background-color: #f8f9fa;
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', sans-serif;
         }
         .title {
-            font-size: 2.8rem;
-            font-weight: 600;
-            color: #0f4c81;
-            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0b3c5d;
+            margin-top: 10px;
+            margin-bottom: 0.2rem;
         }
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #6c757d;
             margin-bottom: 2rem;
         }
-        .stButton>button {
-            border-radius: 10px;
-            background-color: #0f4c81;
-            color: white;
-            font-weight: bold;
-        }
-        .stTextInput>div>div>input {
-            border-radius: 10px;
+        .stChatMessage {
+            padding: 0.5rem;
         }
     </style>
 """, unsafe_allow_html=True)
 
-# Title and subtitle
-st.markdown('<div class="title">💬 Google Analytics Chat Assistant</div>', unsafe_allow_html=True)
-# st.markdown('<div class="subtitle">Ask questions, get insights. Powered by Gemini AI & Google Analytics 4</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">💼 Campaign Intelligence Assistant</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Ask campaign-related questions. Get clear, accurate, data-informed answers instantly.</div>', unsafe_allow_html=True)
 
-
+# ─────────────────────────────────────────────────────
+# SESSION HISTORY
+# ─────────────────────────────────────────────────────
 if "history" not in st.session_state:
     st.session_state.history = []
 
-# display existing history
-for idx, (role, txt) in enumerate(st.session_state.history):
-    message(txt, is_user=(role=="user"), key=f"msg_{role}_{idx}")
+# ─────────────────────────────────────────────────────
+# RENDER HISTORY
+# ─────────────────────────────────────────────────────
+for role, msg in st.session_state.history:
+    st.chat_message(role).write(msg)
 
-# get user input
-query = st.chat_input("Ask any question about your Google Analytics…", key="input_1")
-txt_file_path = "prompt.txt"
-with open(txt_file_path, "r", encoding="utf-8") as file:
-    data_text = file.read()
-
-
+# ─────────────────────────────────────────────────────
+# USER INPUT
+# ─────────────────────────────────────────────────────
+query = st.chat_input("Ask a performance question about your campaign data...")
 
 if query:
-    # record user
+    st.chat_message("user").write(query)
     st.session_state.history.append(("user", query))
-    message(query, is_user=True, key=f"msg_user_{len(st.session_state.history)}")
 
-    # build the full prompt
+    # ─────────────────────────────────────────────────
+    # BUILD PROMPT
+    # ─────────────────────────────────────────────────
     prompt = f"""
-    You are an expert performance marketing analyst. Your role is to deliver precise, insight-driven answers to user questions using only the data provided. Your responses must reflect the depth, clarity, and strategic focus expected from a senior growth consultant or marketing strategist, with the goal of driving measurable business impact.
+    You are a Google Ads performance strategist.
 
-    Response Rules and Expectations:
+    You are a Senior Google Ads Marketing Strategist. Analyze the campaign and landing page performance data with precision and deliver clear, structured insights.
 
-    Only use the provided data.
-    Avoid assumptions or generic advice. Every insight must be grounded in specific, interpretable patterns or metrics observed in the data.
+    Your responsibilities:
 
-    Engagement Rate Calculation (when relevant):
-    If the question involves performance evaluation (e.g., landing pages or user engagement), calculate and report:
+    Keyword-to-Landing Page Analysis
 
-    Engagement Rate = (Engaged Sessions / Total Sessions) × 100
-    URL Handling:
-    If full links (URLs) are available in the data and relevant to the question:
+    For each landing page, identify associated keywords.
 
-    Always include the full URL in the output.
+    Determine which keywords are performing best (based on traffic, engagement rate, and low bounce rate).
 
-    You may use a short name for readability, but ensure the actual link is visible or hyperlinked appropriately.
+    Highlight which keywords are underperforming with clear data-backed reasons (e.g., high bounce rate, low CTR, poor conversion).
 
-    No reference to data structures.
-    Do not mention terms like "columns", "rows", "JSON", "table", or "spreadsheet".
+    For each keyword, explain why it works or doesn't, using actual metrics like CTR, engagement, clicks, conversions, and bounce rate.
 
-    Executive-facing tone and delivery:
-    Write confidently and clearly, as if presenting to a CMO, senior marketing lead, or strategy team. Avoid technical explanations or raw data summaries without insight.
+    Recommendations & Strategy
 
-    Your response must include:
+    For underperforming keywords, provide specific actionable suggestions:
 
-    Insight Summary:
-    Present core findings using tables and bullet points for clarity. Highlight:
+    How to improve ad copy, targeting, or landing page UX.
 
-    Key metric comparisons
+    Alternative high-potential keywords with better intent match.
 
-    Notable changes, trends, and patterns
+    Headline, CTA, or content improvements based on user behavior.
 
-    Data shifts that impact performance
+    Provide keyword expansion suggestions using patterns in successful keywords.
 
-    Performance Analysis:
-    Identify and explain:
+    Recommend budget adjustments for high-ROI opportunities.
 
-    What worked well (top-performing elements or strategies)
+    Output Format
 
-    What underperformed (inefficient or low-impact areas)
+    Present the insights in a clean, structured format:
 
-    What requires improvement (areas with optimization potential)
+    Group by Landing Page → Keywords
 
-    Strategic Recommendations:
-    Translate data insights into actionable recommendations. Focus on:
+    Include for each keyword: CTR, Clicks, Engagement Rate, Bounce Rate, and Conversion Rate
 
-    ROI improvements
+    Add a section: Why This Keyword Works / Doesn’t Work
 
-    Cost efficiency
+    Add a section: Recommendation / Action Plan
 
-    Funnel or conversion optimization
+    🔍 Important: Base all insights and recommendations strictly on the provided data. Avoid generic suggestions. Do not use phrases like “According to the data” or “From the report.” Keep the tone professional, insightful, and direct.
 
-    Channel or content effectiveness
-
-    Avoid:
-
-    Generic or repetitive advice
-
-    Metrics without interpretation
-
-    Mentioning anything about the structure of the data (e.g., headers, keys, datasets)
-
-    User Question:
+    USER QUERY:
     {query}
 
-    Data to use (Google Ads - JSON):
-    {data_text}
+    CAMPAIGN DATA:
+    {json.dumps(campaign_data, indent=None)}
 
+    LANDING PAGE DATA:
+    {json.dumps(landing_data, indent=None)}
     """
 
+    # ─────────────────────────────────────────────────
+    # GENERATE RESPONSE
+    # ─────────────────────────────────────────────────
+    response = gemini_response(prompt).strip()
 
-    # get the model’s answer
-    answer = gemini_response(prompt).strip()
-
-    # record assistant
-    st.session_state.history.append(("assistant", answer))
-    message(answer, is_user=False, key=f"msg_assistant_{len(st.session_state.history)}")
+    st.chat_message("assistant").write(response)
+    st.session_state.history.append(("assistant", response))
