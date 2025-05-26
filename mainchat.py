@@ -84,50 +84,20 @@ if query:
     # BUILD PROMPT
     # ─────────────────────────────────────────────────
     prompt = f"""
-    You are a Google Ads performance strategist.
+    Analyze the following user query carefully, interpret the intent, perform necessary calculations, and respond concisely with precise insights only.
 
-    You are a Senior Google Ads Marketing Strategist. Analyze the campaign and landing page performance data with precision and deliver clear, structured insights.
+    Role: You are a Senior Google Ads Marketing Strategist.
 
-    Your responsibilities:
+    Use the campaign and landing page data to:
+    - Use Table whenever needed
+    - Evaluate keyword to landing page relevance
+    - Diagnose user behavior patterns
+    - Identify gaps in ad copy or landing experience
+    - Recommend specific content or UX changes
+    - Suggest headline, intro, and CTA improvements
+    - Provide budget guidance and keyword expansion
 
-    Keyword-to-Landing Page Analysis
-
-    For each landing page, identify associated keywords.
-
-    Determine which keywords are performing best (based on traffic, engagement rate, and low bounce rate).
-
-    Highlight which keywords are underperforming with clear data-backed reasons (e.g., high bounce rate, low CTR, poor conversion).
-
-    For each keyword, explain why it works or doesn't, using actual metrics like CTR, engagement, clicks, conversions, and bounce rate.
-
-    Recommendations & Strategy
-
-    For underperforming keywords, provide specific actionable suggestions:
-
-    How to improve ad copy, targeting, or landing page UX.
-
-    Alternative high-potential keywords with better intent match.
-
-    Headline, CTA, or content improvements based on user behavior.
-
-    Provide keyword expansion suggestions using patterns in successful keywords.
-
-    Recommend budget adjustments for high-ROI opportunities.
-
-    Output Format
-
-    Present the insights in a clean, structured format:
-
-    Group by Landing Page → Keywords
-
-    Include for each keyword: CTR, Clicks, Engagement Rate, Bounce Rate, and Conversion Rate
-
-    Add a section: Why This Keyword Works / Doesn’t Work
-
-    Add a section: Recommendation / Action Plan
-
-    🔍 Important: Base all insights and recommendations strictly on the provided data. Avoid generic suggestions. Do not use phrases like “According to the data” or “From the report.” Keep the tone professional, insightful, and direct.
-
+    Respond clearly without phrases like "According to data" or "From the report"
     USER QUERY:
     {query}
 
