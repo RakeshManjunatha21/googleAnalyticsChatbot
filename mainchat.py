@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 import json
 import os
-st.set_page_config(page_title="💼 Campaign Intelligence Assistant", layout="wide")
+st.set_page_config(page_title="💼 ADs Intelligence Assistant", layout="wide")
 # ─────────────────────────────────────────────────────
 # CONFIGURE GEMINI
 # ─────────────────────────────────────────────────────
@@ -60,8 +60,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="title">💼 Campaign Intelligence Assistant</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">Ask campaign-related questions. Get clear, accurate, data-informed answers instantly.</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">💼 ADs Intelligence Assistant</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Campaign-related questions.</div>', unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────────────
 # SESSION HISTORY
