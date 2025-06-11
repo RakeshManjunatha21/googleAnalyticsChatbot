@@ -3,11 +3,8 @@ import pandas as pd
 import google.generativeai as genai
 import json
 
-st.set_page_config(page_title="💼 Ads Intelligence Assistant", layout="wide")
+st.set_page_config(page_title="Ads Intelligence Assistant", layout="wide")
 
-# ─────────────────────────────────────────────────────
-# CONFIGURE GEMINI
-# ─────────────────────────────────────────────────────
 GEMINI_API_KEY = "AIzaSyBIBr01u6_BNVfYk989DXkv3FKQA928Kq8"
 genai.configure(api_key=GEMINI_API_KEY)
 
@@ -22,90 +19,65 @@ def gemini_response(prompt: str) -> str:
         if hasattr(resp, "candidates") else resp.text
     )
 
-# ─────────────────────────────────────────────────────
-# LOAD JSON & EXCEL DATA
-# ─────────────────────────────────────────────────────
 @st.cache_data
-def load_json(file_path):
-    with open(file_path, "r", encoding="utf-8") as f:
-        return json.load(f)
+def load_json(path): return json.load(open(path, "r", encoding="utf-8"))
 
-df = pd.read_excel("Ad asset report.xlsx")
-campaign_data = load_json("campaign_report.json")
+@st.cache_data
+def load_excel(path): return pd.read_excel(path)
+
+# Load all datasets
 landing_data = load_json("combined_landing_pages.json")
+campaign_data = load_json("campaign_report.json")
+ad_asset_df = load_excel("Ad asset report.xlsx")
+search_terms_df = load_excel("Search terms report.xlsx")
+responsive_ads_df = load_excel("Responsive search ad combinations report.xlsx")
+asset_detail_df = load_excel("ADR -Insurance Home page (Phrase Match).xlsx")
+device_report_df = load_excel("Device report.xlsx")
 
-# ─────────────────────────────────────────────────────
-# UI HEADER & STYLE
-# ─────────────────────────────────────────────────────
+# ─────────────────────────────────────
+# UI HEADER & STYLING
+# ─────────────────────────────────────
 st.markdown("""
-    <style>
-        .title {
-            font-size: 2.7rem;
-            font-weight: bold;
-            color: #0b3c5d;
-            margin-bottom: 0.3rem;
-        }
-        .subtitle {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-        .question-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 1rem;
-            margin-bottom: 0.5rem;
-            transition: all 0.3s ease;
-        }
-        .question-card:hover {
-            background: rgba(13, 110, 253, 0.08);
-            cursor: pointer;
-            transform: scale(1.01);
-        }
-    </style>
+<style>
+.title { font-size: 2.7rem; font-weight: bold; color: #0b3c5d; }
+.subtitle { font-size: 1rem; color: #666; margin-bottom: 1.5rem; }
+</style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="title">💼 Ads Intelligence Assistant</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">Tap a question below or type your own query to explore ad performance insights</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">Ads Intelligence Assistant</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">Tap a question below or ask your own</div>', unsafe_allow_html=True)
 
-# ─────────────────────────────────────────────────────
+# ─────────────────────────────────────
 # SESSION STATE
-# ─────────────────────────────────────────────────────
-if "history" not in st.session_state:
-    st.session_state.history = []
+# ─────────────────────────────────────
+for key in ["history", "selected_question", "pending_followup"]:
+    if key not in st.session_state: st.session_state[key] = None if key != "history" else []
 
-if "selected_question" not in st.session_state:
-    st.session_state.selected_question = None
+# ─────────────────────────────────────
+# SUGGESTED QUESTIONS
+# ─────────────────────────────────────
 
-# ─────────────────────────────────────────────────────
-# CHAT HISTORY
-# ─────────────────────────────────────────────────────
-for role, msg in st.session_state.history:
-    st.chat_message(role).write(msg)
-
-# ─────────────────────────────────────────────────────
-# INITIAL SUGGESTIONS (First Interaction Only)
-# ─────────────────────────────────────────────────────
-if len(st.session_state.history) == 0:
-    suggested_questions = [
-        "Which landing pages are underperforming based on conversion rate?",
-        "Which keywords are wasting budget with poor conversions?",
-        "What ad creatives need improvement in CTR or relevance?",
-        "Which campaigns have the best ROI and why?",
-        "Suggest improvements for headline and CTA effectiveness"
+def get_top_5_questions():
+    return [
+        "Which landing pages have high spend but low conversions?",
+        "Which keywords from the search term report are underperforming?",
+        "Which ad assets have low CTR and need replacement?",
+        "How are responsive ads performing across devices?",
+        "Which campaigns are getting clicks but no conversions?"
     ]
 
+if len(st.session_state.history) == 0:
+    suggested_questions = get_top_5_questions()
     cols = st.columns(2)
     for i, q in enumerate(suggested_questions):
         with cols[i % 2]:
-            if st.button(q, key=f"suggested_{i}", help="Click to use this question"):
+            if st.button(q, key=f"suggested_{i}"):
                 st.session_state.selected_question = q
 
-# ─────────────────────────────────────────────────────
-# CHAT INPUT & MAIN LOGIC
-# ─────────────────────────────────────────────────────
-query = st.chat_input("Ask a performance question about your campaign data...")
+# ─────────────────────────────────────
+# HANDLE USER INPUT
+# ─────────────────────────────────────
+query = st.chat_input("Ask your campaign data question...")
 active_query = query or st.session_state.selected_question
 
 if active_query:
@@ -113,49 +85,43 @@ if active_query:
     st.session_state.history.append(("user", active_query))
     st.session_state.selected_question = None
 
+    prompt_data_blocks = []
+    def summarize(df, label, top=10):
+        prompt_data_blocks.append(f"**{label} (Top {top} rows shown):**\n{df.head(top).to_markdown(index=False)}")
+        prompt_data_blocks.append("**NOTE:** Only showing top rows to keep response concise. Summarize actions based on full data.")
+
+    if "landing" in active_query.lower():
+        prompt_data_blocks.append(f"**Landing Page Data:**\n{json.dumps(landing_data)}")
+    if "keyword" in active_query.lower() or "search term" in active_query.lower():
+        summarize(search_terms_df, "Search Terms")
+    if "asset" in active_query.lower() or "creative" in active_query.lower():
+        summarize(ad_asset_df, "Ad Asset Report")
+    if "device" in active_query.lower():
+        summarize(device_report_df, "Device Report")
+    if "responsive" in active_query.lower():
+        summarize(responsive_ads_df, "Responsive Ads Report")
+    if "campaign" in active_query.lower():
+        prompt_data_blocks.append(f"**Campaign Report:**\n{json.dumps(campaign_data)}")
+
+    # Final Prompt
     prompt = f"""
+You are a **Senior Google Ads Strategist**.analyzing and Provide direct, actionable insights.
 
-You are a **Senior Google Ads Strategist** analyzing campaign and landing page performance to deliver sharp, actionable insights.
+### Rules:
+- No hypotheticals or vague advice.
+- Use imperative tone: Add, Pause, Shift budget, Remove.
+- Never ask for data or suggest checking anything.
+- Condense large data into key takeaways.
+- Follow-up must be a **single clear question** to drill deeper.
+- Tables (impressions, clicks, cost/click, conversions, spend, engagement % and category).
+- Highlight underperformance and exact recommendations (e.g., remove X, add Y, shift budget to Z).
+- Provide clean summaries.
 
-### When responding:
-
-1. **Use tables** wherever possible for clarity. Every table should include the following columns if the data is available:
-
-   * **Keyword**
-   * **Total Impressions**
-   * **Clicks**
-   * **Cost per Click**
-   * **Conversions**
-   * **Total Spend**
-   * **Engagement %** (calculated as `Clicks ÷ Impressions × 100`)
-   * **Engagement Category** (High, Average, or Poor)
-
-     * **High**: ≥ 5%
-     * **Average**: 2% to < 5%
-     * **Poor**: < 2%
-
-2. For keyword analysis, clearly explain:
-
-   * Which **landing pages are suitable** for specific keywords and why (e.g., high engagement, conversion).
-   * Which **landing pages are not suitable** and why (e.g., high spend with low engagement).
-
-   Format recommendations like this:
-
-   * *Landing page A suits keywords X, Y, Z.*
-   * *Landing page A is not suitable for keywords M, N, O due to poor engagement or conversions.*
-
-3. When making keyword recommendations:
-
-   * Don’t speak in hypotheticals or ask the user to take action.
+* Don’t speak in hypotheticals or ask the user to take action.
    * Instead, provide specific instructions:
 
      * *“Add the following high-performing keywords to campaign X: \[list].”*
      * *“Pause the following low-performing keywords due to poor engagement: \[list].”*
-
-4. If asset-level data is included (such as images, headlines, descriptions):
-
-   * Comment on which assets are contributing positively or negatively.
-   * Recommend replacing or scaling successful creatives based on engagement metrics.
 
 5. **Never ask the user to provide data.**
 
@@ -163,21 +129,26 @@ You are a **Senior Google Ads Strategist** analyzing campaign and landing page p
    * You may ask **validation-style follow-ups**, such as:
      *“Should we shift budget to Landing Page A based on its strong performance with high-converting keywords?”*
 
-### Begin the Analysis
+6. give budget recommendations based on performance data.
 
-**User Request:**
-`{active_query}`
+### User Query:
+{active_query}
 
-**Campaign Data:**
-`{json.dumps(campaign_data, indent=None)}`
-
-**Landing Page Data:**
-`{json.dumps(landing_data, indent=None)}`
-
-**Top 100 Asset Report Rows:**
-`{df.head(100).to_markdown(index=False)}`
+### Relevant Data:
+{chr(10).join(prompt_data_blocks)}
 """
 
+    # Response
     response = gemini_response(prompt).strip()
     st.chat_message("assistant").write(response)
     st.session_state.history.append(("assistant", response))
+    st.session_state.pending_followup = "What would you like to drill down on next?"
+
+# ─────────────────────────────────────
+# FOLLOW-UP FLOW
+# ─────────────────────────────────────
+# if st.session_state.pending_followup:
+#     followup = st.chat_input("Next Step: (Ask follow-up based on insights)")
+#     if followup:
+#         st.session_state.selected_question = followup
+#         st.session_state.pending_followup = None
