@@ -174,7 +174,7 @@ You are a **Senior Google Ads Strategist** analyzing campaign and landing page p
 **Landing Page Data:**
 `{json.dumps(landing_data, indent=None)}`
 
-**Top 10 Asset Report Rows:**
+**Top 100 Asset Report Rows:**
 `{df.head(100).to_markdown(index=False)}`
 """
 
